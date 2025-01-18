@@ -17,3 +17,5 @@ const Product = conn.define('Product',{
     }
 
 })
+
+module.exports={Product}
