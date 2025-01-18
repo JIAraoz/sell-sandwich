@@ -1,6 +1,5 @@
 require("dotenv").config()
 const { Sequelize } = require("sequelize");
-
 const sequelize = new Sequelize(process.env.DB_URL);
 
 (async () => {
@@ -13,4 +12,13 @@ const sequelize = new Sequelize(process.env.DB_URL);
   }
 })();
 
+
+
+
+
 module.exports ={conn: sequelize};
+const {Product} = require("./models/Products")
+const {Cart} =require('./models/Cart')
+const CartProducts = require('./models/CartProducts')
+Product.belongsToMany(Cart,{ through: CartProducts})
+Cart.belongsToMany(Product,{through: CartProducts})
