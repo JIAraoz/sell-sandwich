@@ -2,6 +2,7 @@ const { Product } = require("../../models/Products");
 
 const createProduct = async (req, res) => {
     try {
+
         const { name, price } = req.body;
 
      
@@ -17,7 +18,7 @@ const createProduct = async (req, res) => {
         return res.status(201).json({
             message: "Product created successfully.",
             product,
-        });
+          });
 
     } catch (error) {
         console.error("Error creating product:", error);
