@@ -4,14 +4,6 @@ const createProduct = async (req, res) => {
     try {
 
         const { name, price } = req.body;
-
-     
-        if (!name || typeof name !== "string" || !price || typeof price !== "number" || price <= 0) {
-            return res.status(400).json({
-                error: "Bad request: 'name' must be a string and 'price' must be a positive number greater than 0.",
-            });
-        }
-
         const product = await Product.create({ name, price });
 
 
