@@ -11,7 +11,7 @@ const CartProducts = conn.define("CartProducts", {
   quantity: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    defaultValue: 1, // Define una cantidad predeterminada.
+    defaultValue: 1, 
   },
   price: {
     type: DataTypes.FLOAT,

@@ -5,10 +5,10 @@ const {validateResult} = require('../helpers/validateHelper')
 const validateCreateProduct = [
     check('name').
     exists().
-    notEmpty().withMessage("el nombre no puede estar vacio"),
+    notEmpty().withMessage("the name cannot be empty"),
     check('price').
     exists().
-    isNumeric().not().isString().withMessage(" el precio debe ser un numero"),
+    isNumeric().not().isString().withMessage("the price must be a number"),
     (req, res, next) =>{
         validateResult(req,res,next)
     }
