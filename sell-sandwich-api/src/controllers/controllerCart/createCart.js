@@ -5,7 +5,11 @@ const {Cart} = require('../../models/Cart')
 const createCart = async (req,res) => {
  try {
     const {name} = req.body
-    const cart = Cart.create({name})
+    const cart = await Cart.create({name})
+    return res.status(201).json({
+        message: "Cart created successfully",
+        cart,
+      });
  } catch (error) {
     console.error("Error creating cart:", error);
 
