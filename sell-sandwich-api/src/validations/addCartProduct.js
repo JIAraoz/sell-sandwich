@@ -17,7 +17,7 @@ const validateAddCartProduct = [
     .notEmpty().withMessage("The quantity cannot be empty")
     .isNumeric().withMessage("The quantity must be a number"),
   
-  (req, res, next) => validateResult(req, res, next),
+  (req, res, next) => validateResult(req, res, next)
 ];
 
 module.exports = { validateAddCartProduct };

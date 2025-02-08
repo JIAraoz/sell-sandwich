@@ -20,5 +20,6 @@ module.exports ={conn: sequelize};
 const {Product} = require("./models/Products")
 const {Cart} =require('./models/Cart')
 const CartProducts = require('./models/CartProducts')
+
 Product.belongsToMany(Cart,{ through: CartProducts})
 Cart.belongsToMany(Product,{through: CartProducts})
