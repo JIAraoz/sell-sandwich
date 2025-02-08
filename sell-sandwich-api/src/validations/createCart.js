@@ -3,9 +3,15 @@
 
 
  const validateCreateCart = [
-    check('name').exists().notEmpty().withMessage("the name cannot be empty").isString().withMessage('the name must be a string'),
-    (req,res) =>{
-        validateResult(req,res)
+    check('name').
+        exists().
+        notEmpty().
+        withMessage("the name cannot be empty").
+        isString().
+        withMessage('the name must be a string'),
+
+    (req,res, next) =>{
+        validateResult(req,res, next)
     }
  ]
 
