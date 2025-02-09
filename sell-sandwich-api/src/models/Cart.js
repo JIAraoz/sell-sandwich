@@ -10,6 +10,12 @@ const Cart = conn.define("Cart",{
     name:{
         type:DataTypes.STRING,
         allowNull:false
+    },
+    isActive:{
+
+        type:DataTypes.BOOLEAN,
+        defaultValue:true,
+        allowNull:false
     }
 })
 
