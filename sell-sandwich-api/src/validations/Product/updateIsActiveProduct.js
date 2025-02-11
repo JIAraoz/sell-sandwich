@@ -1,8 +1,8 @@
 const {param} = require('express-validator')
-const {validateResult} = require('../helpers/validateHelper')
+const {validateResult} = require('../../helpers/validateHelper')
 
 
-const validateGetProductById = [
+const validateUpdateIsActiveProduct = [
     param("idProduct").exists()
     .withMessage("the idProduct must be a parameter")
     .isUUID()
@@ -10,4 +10,4 @@ const validateGetProductById = [
     , (req, res, next) => validateResult(req, res, next)
 ]
 
-module.exports = {validateGetProductById}
+module.exports = {validateUpdateIsActiveProduct}

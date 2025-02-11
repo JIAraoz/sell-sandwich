@@ -14,6 +14,11 @@ const Product = conn.define('Product',{
     price:{
         type:DataTypes.INTEGER,
         allowNull:false
+    },
+    isActive:{
+        type:DataTypes.BOOLEAN,
+        defaultValue:true,
+        allowNull:false
     }
 
 })
