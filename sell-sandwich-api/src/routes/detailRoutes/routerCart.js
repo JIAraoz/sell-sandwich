@@ -2,10 +2,10 @@ const { addProductCart } = require('../../controllers/controllerCart/addProductC
 const createCart = require('../../controllers/controllerCart/createCart')
 const { getCartById } = require('../../controllers/controllerCart/getCartById')
 const { updateIsActive } = require('../../controllers/controllerCart/updateIsActive')
-const { validateAddCartProduct } = require('../../validations/addCartProduct')
-const { validateCreateCart } = require('../../validations/createCart')
-const { validateGetCartById } = require('../../validations/getCartById')
-const { validateUpdateIsActive } = require('../../validations/updateIsActive')
+const { validateAddCartProduct } = require('../../validations/Cart/addCartProduct')
+const { validateCreateCart } = require('../../validations/Cart/createCart')
+const { validateGetCartById } = require('../../validations/Cart/getCartById')
+const { validateUpdateIsActive } = require('../../validations/Cart/updateIsActive')
 
 const routerCart = require('express').Router()
 
