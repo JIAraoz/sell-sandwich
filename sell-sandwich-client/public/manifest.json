@@ -31,7 +31,7 @@
     {
       "src": "/sell-sandwich.vercel.app-mobile.png",
       "sizes": "750x1334",
-      "type": "image/png"
+      "type": "image/png" 
     }
   ]
 }
