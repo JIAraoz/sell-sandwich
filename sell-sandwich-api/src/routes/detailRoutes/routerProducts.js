@@ -1,4 +1,6 @@
 const routerProducts = require("express").Router()
+const  {upload} = require("../../multer")
+
 const createProducts = require('../../controllers/controllerProducts/createProduct')
 const { getProductById } = require("../../controllers/controllerProducts/getProductById")
 const getProducts = require("../../controllers/controllerProducts/getProducts")
@@ -10,7 +12,7 @@ const { validateUpdateIsActiveProduct } = require("../../validations/Product/upd
 const { validateUpdateProduct } = require("../../validations/Product/updateProduct")
 
 
-routerProducts.post("/createProduct",validateCreateProduct,createProducts)
+routerProducts.post("/createProduct",upload.single("image"),validateCreateProduct,createProducts)
 routerProducts.get("/getProducts",getProducts)
 routerProducts.get("/getProductByID/:idProduct",validateGetProductById,getProductById)
 routerProducts.put("/updateIsActiveProduct/:idProduct",validateUpdateIsActiveProduct,updateIsActiveProduct)
