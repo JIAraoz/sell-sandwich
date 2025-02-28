@@ -8,8 +8,9 @@ const validateCreateProduct = [
     notEmpty().withMessage("the name cannot be empty"),
     check('price').
     exists().
-    isNumeric().not().isString().withMessage("the price must be a number"),
+    isNumeric().withMessage("the price must be a number"),
     (req, res, next) =>{
+        req.body.price = Number(req.body.price);
         validateResult(req,res,next)
     }
 ]

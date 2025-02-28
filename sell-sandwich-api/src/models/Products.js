@@ -15,7 +15,7 @@ const Product = conn.define('Product',{
         type:DataTypes.INTEGER,
         allowNull:false
     },
-    Image:{
+    image:{
         type:DataTypes.STRING,
         allowNull:false
     }
