@@ -4,7 +4,8 @@ const createProduct = async (req, res) => {
     try {
 
         const { name, price } = req.body;
-        const product = await Product.create({ name, price });
+        const image = `uploads/${req.file.filename}` 
+        const product = await Product.create({ name, price, image });
 
 
         return res.status(201).json({

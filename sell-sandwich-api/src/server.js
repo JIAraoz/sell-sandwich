@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const {routes} = require('./routes/index')
+const path = require('path');
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json())
