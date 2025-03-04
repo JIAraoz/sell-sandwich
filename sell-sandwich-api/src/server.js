@@ -19,7 +19,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Servir archivos estáticos (imagenes subidas)
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+/* app.use('/uploads', express.static(path.join(__dirname, '../uploads'))); */
+app.use('/uploads', express.static(path.join(__dirname, '../uploads'), {
+    setHeaders: (res, path) => {
+        res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+        res.setHeader("Pragma", "no-cache");
+        res.setHeader("Expires", "0");
+        res.setHeader("Surrogate-Control", "no-store");
+    }
+}));
 
 console.log("Sirviendo archivos desde:", path.resolve(__dirname, 'uploads'));
 

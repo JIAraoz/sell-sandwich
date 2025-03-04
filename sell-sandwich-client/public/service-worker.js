@@ -1,4 +1,4 @@
-const CACHE_NAME = "v2";
+const CACHE_NAME = "v3";
 const STATIC_ASSETS = [
   "/",
   "/index.html",
@@ -12,9 +12,7 @@ const STATIC_ASSETS = [
 self.addEventListener("install", (event) => {
   console.log("Service Worker installing...");
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
-    })
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
   );
 });
 
@@ -22,9 +20,10 @@ self.addEventListener("install", (event) => {
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
-  // Excluir imágenes de la carpeta /uploads/
+  // 🔹 Evita cachear imágenes de /uploads/
   if (url.pathname.startsWith("/uploads/")) {
     console.log("Bypassing cache for:", event.request.url);
+    event.respondWith(fetch(event.request)); // Fuerza solicitud al servidor
     return;
   }
 
@@ -34,6 +33,7 @@ self.addEventListener("fetch", (event) => {
         cachedResponse ||
         fetch(event.request)
           .then((networkResponse) => {
+            if (!networkResponse || !networkResponse.ok) return networkResponse; // Evita cachear respuestas fallidas
             return caches.open(CACHE_NAME).then((cache) => {
               cache.put(event.request, networkResponse.clone()); // Cache dinámico
               return networkResponse;
@@ -49,15 +49,15 @@ self.addEventListener("fetch", (event) => {
 self.addEventListener("activate", (event) => {
   console.log("Service Worker activated...");
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
+    caches.keys().then((cacheNames) =>
+      Promise.all(
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
             console.log("Deleting old cache:", cache);
             return caches.delete(cache);
           }
         })
-      );
-    })
+      )
+    )
   );
 });
