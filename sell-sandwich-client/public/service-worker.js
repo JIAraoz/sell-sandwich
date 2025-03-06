@@ -1,4 +1,5 @@
-const CACHE_NAME = "v3";
+const STATIC_CACHE = "static-v3";
+const DYNAMIC_CACHE = "dynamic-v3";
 const STATIC_ASSETS = [
   "/",
   "/index.html",
@@ -12,8 +13,9 @@ const STATIC_ASSETS = [
 self.addEventListener("install", (event) => {
   console.log("Service Worker installing...");
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
+    caches.open(STATIC_CACHE).then((cache) => cache.addAll(STATIC_ASSETS))
   );
+  self.skipWaiting(); // Hace que el SW se active inmediatamente
 });
 
 // 📌 Interceptar solicitudes y servir desde la caché cuando sea posible
@@ -23,24 +25,25 @@ self.addEventListener("fetch", (event) => {
   // 🔹 Evita cachear imágenes de /uploads/
   if (url.pathname.startsWith("/uploads/")) {
     console.log("Bypassing cache for:", event.request.url);
-    event.respondWith(fetch(event.request)); // Fuerza solicitud al servidor
-    return;
+    return; // No interceptamos esta petición
   }
 
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      return (
-        cachedResponse ||
-        fetch(event.request)
-          .then((networkResponse) => {
-            if (!networkResponse || !networkResponse.ok) return networkResponse; // Evita cachear respuestas fallidas
-            return caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, networkResponse.clone()); // Cache dinámico
-              return networkResponse;
-            });
-          })
-          .catch(() => caches.match("/offline.html")) // Si no hay internet, mostrar página offline
-      );
+      if (cachedResponse) {
+        return cachedResponse; // Devuelve desde la caché si existe
+      }
+
+      return fetch(event.request)
+        .then((networkResponse) => {
+          if (!networkResponse || !networkResponse.ok) return networkResponse; // Evita cachear respuestas fallidas
+
+          return caches.open(DYNAMIC_CACHE).then((cache) => {
+            cache.put(event.request, networkResponse.clone()); // Almacena en caché dinámica
+            return networkResponse;
+          });
+        })
+        .catch(() => caches.match("/offline.html")); // Si no hay internet, mostrar página offline
     })
   );
 });
@@ -52,7 +55,7 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((cacheNames) =>
       Promise.all(
         cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
+          if (![STATIC_CACHE, DYNAMIC_CACHE].includes(cache)) {
             console.log("Deleting old cache:", cache);
             return caches.delete(cache);
           }
@@ -60,4 +63,5 @@ self.addEventListener("activate", (event) => {
       )
     )
   );
+  self.clients.claim(); // Activa el SW en todas las pestañas abiertas
 });
