@@ -10,9 +10,12 @@ export default function Form(){
         register,
         handleSubmit,
         formState:{errors},
-        setValue
+        setValue,watch
+
     
       } = useForm<formData>()
+
+      const selectedImage = watch("image");
     
       const onSubmit = handleSubmit( (data) =>{
         console.log(data);
@@ -29,9 +32,9 @@ export default function Form(){
     )
 
       const handleImageChange = (e : React.ChangeEvent<HTMLInputElement>)=>{
-        console.log(e);
+        console.log(selectedImage);
         const file = e.target.files?.[0] || null;
-        setValue("image", file)
+        setValue("image", file, { shouldValidate: true });
       }
         return(
             <div >
@@ -68,7 +71,7 @@ export default function Form(){
                         errors.price && <span className="text-red-600">{String(errors.price.message)}</span>
                     }
                     <label htmlFor="imagen">Imagen:</label>
-                    <input type="file" {...register("image",{
+                    <input type="file" accept="image/*" {...register("image",{
                         required:{
                             value:true,
                             message:"Debes seleccionar una imagen"
