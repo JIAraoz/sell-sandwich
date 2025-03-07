@@ -18,6 +18,8 @@ export default function Form() {
 
   // 👀 Observar el archivo seleccionado
   const selectedImage = watch("image");
+  console.log(selectedImage);
+  
 
   const onSubmit = handleSubmit((data) => {
   
