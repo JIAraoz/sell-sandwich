@@ -36,6 +36,7 @@ export default function Form() {
       .post("http://localhost:3000/products/createProduct", formData)
       .then(({ data }) => {
         console.log("Respuesta del servidor:", data);
+        window.location.reload()
       })
       .catch((error) => {
         console.error("Error al enviar el formulario", error);

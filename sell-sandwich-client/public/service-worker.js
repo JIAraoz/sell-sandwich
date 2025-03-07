@@ -22,10 +22,16 @@ self.addEventListener("install", (event) => {
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
+  // 🔹 Evita cachear peticiones `POST`, `PUT`, `DELETE`
+  if (event.request.method !== "GET") {
+    console.log("Skipping cache for:", event.request.url);
+    return; // No interceptamos la petición
+  }
+
   // 🔹 Evita cachear imágenes de /uploads/
   if (url.pathname.startsWith("/uploads/")) {
     console.log("Bypassing cache for:", event.request.url);
-    return; // No interceptamos esta petición
+    return;
   }
 
   event.respondWith(
