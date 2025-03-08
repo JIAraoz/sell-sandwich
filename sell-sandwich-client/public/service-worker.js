@@ -24,7 +24,7 @@ self.addEventListener("fetch", (event) => {
 
   // 🔹 Evita cachear peticiones `POST`, `PUT`, `DELETE`
   if (event.request.method !== "GET") {
-    console.log("Skipping cache for:", event.request.url);
+    console.log("Skipping cache for: ", event.request.url);
     return; // No interceptamos la petición
   }
 
