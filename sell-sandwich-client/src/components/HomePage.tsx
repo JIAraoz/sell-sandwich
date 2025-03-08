@@ -2,7 +2,7 @@ const URL_SERVER = import.meta.env.VITE_URL_SERVER
 
 import { useState, useEffect } from "react";
 import Form from "./Form";
-import Products from "./Products";
+import Products from "./Products"; 
 import axios from "axios"
 export default function HomePage(){
   const [products,setProducts] = useState([])
