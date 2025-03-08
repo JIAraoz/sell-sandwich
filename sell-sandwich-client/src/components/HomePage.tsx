@@ -1,4 +1,4 @@
-const URL_SERVER = import.meta.env.VITE_SERVER_URL
+const URL_SERVER = import.meta.env.VITE_URL_SERVER
 
 import { useState, useEffect } from "react";
 import Form from "./Form";
@@ -15,7 +15,7 @@ export default function HomePage(){
      }).catch((error) =>{
        console.log(error);
        
-     })
+     }) 
   },[])
   return(
     <><div className="flex flex-col align-middle items-center">
