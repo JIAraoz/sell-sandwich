@@ -35,7 +35,7 @@ export default function Form() {
     console.log("Formulario enviado:", formData);
 
     axios
-      .post("http://localhost:3000/products/createProduct", formData)
+      .post("https://sell-sandwich-2.onrender.com/products/createProduct", formData)
       .then(({ data }) => {
         console.log("Respuesta del servidor:", data);
         window.location.reload()

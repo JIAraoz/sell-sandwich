@@ -7,7 +7,7 @@ import axios from "axios"
 export default function HomePage(){
   const [products,setProducts] = useState([])
   useEffect(()=>{
-    axios.get(`${URL_SERVER}/products/getProducts?t=${Date.now()}`).then((response) => {
+    axios.get(`https://sell-sandwich-2.onrender.com/products/getProducts?t=${Date.now()}`).then((response) => {
       const product = response.data.products
       console.log(response.data.products);
       
