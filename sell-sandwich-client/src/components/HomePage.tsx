@@ -1,4 +1,4 @@
-const URL_SERVER = import.meta.env.VITE_URL_SERVER
+
 
 import { useState, useEffect } from "react";
 import Form from "./Form";
