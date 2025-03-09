@@ -6,12 +6,15 @@ const { getProductById } = require("../../controllers/controllerProducts/getProd
 const getProducts = require("../../controllers/controllerProducts/getProducts")
 const {updateIsActiveProduct} = require("../../controllers/controllerProducts/updateIsActiveProduct")
 const { updateProduct } = require("../../controllers/controllerProducts/updateProduct")
+const { deleteProduct } = require("../../controllers/controllerProducts/deleteProduct")
+
 const {validateCreateProduct} = require('../../validations/Product/createProduct')
 const { validateGetProductById } = require("../../validations/Product/getProductById")
 const { validateUpdateIsActiveProduct } = require("../../validations/Product/updateIsActiveProduct")
 const { validateUpdateProduct } = require("../../validations/Product/updateProduct")
+const { validateDeleteProduct } =require("../../validations/Product/deleteProduct")
 
-
+routerProducts.delete("/deleteProduct",validateDeleteProduct,deleteProduct)
 routerProducts.post("/createProduct",upload.single("image"),validateCreateProduct,createProducts)
 routerProducts.get("/getProducts",getProducts)
 routerProducts.get("/getProductByID/:idProduct",validateGetProductById,getProductById)
