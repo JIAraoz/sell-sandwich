@@ -6,6 +6,9 @@ const deleteProduct = async (req,res) => {
         if(product){
             product.isActive = false
             await product.save()
+            res.status(200).json({
+                message:"Product was eliminated"
+            })
         }else{
             return res.stats(404).json({
                 error:"Product not found"
