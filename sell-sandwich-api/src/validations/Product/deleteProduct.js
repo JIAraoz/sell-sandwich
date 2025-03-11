@@ -11,4 +11,4 @@ const validateDeleteProduct = [
     , (req, res, next) => validateResult(req, res, next)
 ]
 
-module.export = {validateDeleteProduct}
+module.exports = {validateDeleteProduct}
