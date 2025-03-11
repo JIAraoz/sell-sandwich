@@ -14,7 +14,7 @@ const { validateUpdateIsActiveProduct } = require("../../validations/Product/upd
 const { validateUpdateProduct } = require("../../validations/Product/updateProduct")
 const { validateDeleteProduct } = require("../../validations/Product/deleteProduct")
 
-routerProducts.delete("/deleteProduct",validateDeleteProduct,deleteProduct)
+routerProducts.delete("/deleteProduct/:idProduct",validateDeleteProduct,deleteProduct)
 routerProducts.post("/createProduct",upload.single("image"),validateCreateProduct,createProducts)
 routerProducts.get("/getProducts",getProducts)
 routerProducts.get("/getProductByID/:idProduct",validateGetProductById,getProductById)
