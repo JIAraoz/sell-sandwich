@@ -1,7 +1,11 @@
 const {Product} = require('../../models/Products')
 const getProducts = async (req, res) => {
     try {
-        const products = await Product.findAll();
+        const products = await Product.findAll({
+            where:{
+                isActive:true
+            }
+        });
 
         return res.status(200).json({ products: products || [] });
 
