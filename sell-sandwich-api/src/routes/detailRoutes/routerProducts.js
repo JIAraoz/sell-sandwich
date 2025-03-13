@@ -4,7 +4,7 @@ const  {upload} = require("../../multer")
 const createProducts = require('../../controllers/controllerProducts/createProduct')
 const { getProductById } = require("../../controllers/controllerProducts/getProductById")
 const getProducts = require("../../controllers/controllerProducts/getProducts")
-
+const { deleteAllImages } = require("../../controllers/controllerProducts/deleteAllImages")
 const { updateProduct } = require("../../controllers/controllerProducts/updateProduct")
 const { deleteProduct } = require("../../controllers/controllerProducts/deleteProduct")
 
@@ -19,6 +19,7 @@ routerProducts.post("/createProduct",upload.single("image"),validateCreateProduc
 routerProducts.get("/getProducts",getProducts)
 routerProducts.get("/getProductByID/:idProduct",validateGetProductById,getProductById)
 routerProducts.put("/updateProduct/:idProduct",validateUpdateProduct,updateProduct)
+routerProducts.delete("/deleteAllImages", deleteAllImages )
 
 
 
