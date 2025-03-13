@@ -1,3 +1,0 @@
-const deleteImages = (req, res) => {
-    
-}
