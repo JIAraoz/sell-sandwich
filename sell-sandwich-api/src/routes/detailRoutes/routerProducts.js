@@ -10,7 +10,6 @@ const { deleteProduct } = require("../../controllers/controllerProducts/deletePr
 
 const {validateCreateProduct} = require('../../validations/Product/createProduct')
 const { validateGetProductById } = require("../../validations/Product/getProductById")
-const { validateUpdateIsActiveProduct } = require("../../validations/Product/updateIsActiveProduct")
 const { validateUpdateProduct } = require("../../validations/Product/updateProduct")
 const { validateDeleteProduct } = require("../../validations/Product/deleteProduct")
 
