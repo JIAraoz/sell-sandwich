@@ -18,7 +18,7 @@ routerProducts.post("/createProduct",upload.single("image"),validateCreateProduc
 routerProducts.get("/getProducts",getProducts)
 routerProducts.get("/getProductByID/:idProduct",validateGetProductById,getProductById)
 routerProducts.put("/updateProduct/:idProduct",validateUpdateProduct,updateProduct)
-routerProducts.get("/deleteAllImages",deleteAllImages )
+routerProducts.get("/deleteImages",deleteAllImages )
 
 
 
