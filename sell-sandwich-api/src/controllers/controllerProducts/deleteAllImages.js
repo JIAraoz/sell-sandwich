@@ -9,8 +9,8 @@ fs.readdir("../../../uploads",(err, images)=>{
       )
       res.status(200).json({
         images
-    }
-    )
+      })
+    
     }else{
         return res.status(500).json({
             error: "Internal server error. Please try again later.",
