@@ -1,7 +1,6 @@
 
 
 import { useState, useEffect } from "react";
-import Form from "./Form";
 import Products from "./Products"; 
 import axios from "axios"
 export default function HomePage(){
