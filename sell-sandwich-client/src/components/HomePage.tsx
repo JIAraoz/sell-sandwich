@@ -18,8 +18,8 @@ export default function HomePage(){
      }) 
   },[])
   return(
-    <><div className="flex flex-col align-middle items-center">
-    <Form></Form>
+    <><div className="flex flex-col align-middle items-center bg-black h-4/5 m-8  ">
+    
     <Products products={products}></Products>
     </div>
     </>
