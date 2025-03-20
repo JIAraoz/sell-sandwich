@@ -18,9 +18,11 @@ export default function HomePage(){
   },[])
   return(
     <><div className="flex flex-col align-middle items-center bg-black h-4/5 m-8  ">
-    
-    <Products products={products}></Products>
+    {
+       products[0] ? <Products products={products}></Products> : <span className="mt-6">No hay productos</span>   
+
+    }
     </div>
     </>
   )
-}
+} 
