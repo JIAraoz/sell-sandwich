@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import Nav from "./Nav";
 
 export default function Form() {
   interface formData {
@@ -55,6 +56,7 @@ export default function Form() {
 
   return (
     <div>
+      <Nav></Nav>
       <form
         className="flex align-middle items-center flex-col"
         encType="multipart/form-data"
