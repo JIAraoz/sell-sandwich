@@ -9,6 +9,7 @@ export default function Form() {
     image: File | null;
   }
 
+
   const {
     register,
     handleSubmit,
